@@ -8,7 +8,9 @@ module.exports.viewAll = async function(req, res){
 
 //profile
 module.exports.viewProfile = async function(req,res) {
-    const student = await Student.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.id,{
+        include: 'courses'
+    });
     res.render('student/profile', {student});
 };
 
@@ -39,7 +41,14 @@ module.exports.renderEditForm = async function(req, res){
 //edit
 
 //delete
-
+module.exports.deleteStudent = async function(req, res){
+    await Student.destroy({
+        where: {
+            id:req.params.id
+        }
+    });
+    res.redirect('/students');
+};
 //update
 module.exports.updateStudent = async function(req, res){
     const student = await Student.update({

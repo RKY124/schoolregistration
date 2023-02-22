@@ -23,4 +23,5 @@ router.get('/students/edit/:id', studentController.renderEditForm);
 router.post('/students/edit/:id', studentController.updateStudent);
 router.get('/students/add', studentController.renderAddForm);
 router.post('/students/add', studentController.addStudent);
+router.get('/students/delete/:id', studentController.deleteStudent);
 module.exports = router;
